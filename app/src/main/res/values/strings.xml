@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Playzoom</string>
+    <string name="get_started_title">Watch your favorite\nmovie</string>
+    <string name="get_started_buttom">Get Started</string>
+</resources>
