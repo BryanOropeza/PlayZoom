@@ -2,21 +2,40 @@ package com.bryan.playzoom;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.Toast;
+
+
+import com.bryan.playzoom.databinding.ActivityMainBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnGetStarted;
-    //private ActivityMainBinding binding;
+    //private Button btnGetStarted;
+    private ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //btnGetStarted = findViewById(R.id.btn_get_started);
-        //btnGetStarted = setOnClickListener(v ->{
-        //    Toast.makeText(this,"comenzar",Toast.LENGTH_LONG).show();
-        //});
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        binding.btnGetStarted.setOnClickListener(v ->{
+            //Toast.makeText(this,"Comenzar",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        } );
+        binding.fltMain.setOnClickListener(view -> {
+            String[] mensajes = {
+                    "Playing!",
+                    "Started Now",
+                    "Let's go",
+                    "Very Nice"
+            };
+            int mensajeAleatorio = (int) (Math.random() * mensajes.length);
+            String mensajeElegido = mensajes[mensajeAleatorio];
+            Snackbar.make(binding.getRoot(), mensajeElegido,Snackbar.LENGTH_SHORT).show();
+        });
+
     }
 }
